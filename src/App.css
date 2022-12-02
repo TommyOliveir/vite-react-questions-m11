@@ -1,5 +1,14 @@
+* {
+    font-family: 'Dosis', sans-serif;
+font-family: 'Inter', sans-serif;
+font-family: 'Nunito', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+}
+
 main{
-    background: rgb(180, 168, 168);
+    background: 
+    #f6f8fa ;
     max-width: 800px;
     margin: auto;
     padding: 1em 2em;

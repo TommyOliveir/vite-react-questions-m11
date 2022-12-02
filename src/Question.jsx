@@ -1,9 +1,13 @@
 import React from 'react'
 
 function Question(props) {
+    const styles = {
+        backgroundColor: props.type === "multiple" ? "#59E391" : props.type === "boolean" ?  "yellow" : "white"
+    }
+    
   return (
     <div>
-      <h1> {props.number}. {props.question}</h1>
+      <p style={styles}>{props.number}. {props.question}</p>
     </div>
   )
 }

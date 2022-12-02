@@ -18,7 +18,7 @@ function App() {
   console.log("hey", questions[1])
 
   const questionElements = questions.map((item, index) => {
-    return <Question key={item.question} question={item.question} number={index + 1} />
+    return <Question key={item.question} question={item.question} number={index + 1} type={item.type} />
   }
   )
 
