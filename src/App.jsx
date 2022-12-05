@@ -47,7 +47,7 @@ function App() {
   function showQuizBtn() {
     setShowQuiz(prevShowQuiz => prevShowQuiz = true)
     setCurrentQuestions(prevcurrentQuestions => prevcurrentQuestions = questions.map(item => {
-      console.log("quesion map", typeof item)
+      console.log("quesion map",  item)
       return {
         
         question: item.question,
