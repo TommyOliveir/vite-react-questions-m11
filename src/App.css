@@ -17,3 +17,8 @@ main{
 .answer:hover {
 background: red;
 }
+
+.correct-answer {
+    background: greenyellow;
+   
+}
