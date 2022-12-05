@@ -13,3 +13,7 @@ main{
     margin: auto;
     padding: 1em 2em;
 }
+
+.answer:hover {
+background: red;
+}
