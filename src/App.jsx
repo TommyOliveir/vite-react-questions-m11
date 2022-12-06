@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Question from "./Question";
 import { nanoid } from "nanoid";
+import shuffle from "./utils";
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -60,12 +61,13 @@ function App() {
             type: item.type,
             correct_answer: item.correct_answer,
             incorrect_answers: item.incorrect_answers,
-            multiple_choices: [...item.incorrect_answers, item.correct_answer],
+            multiple_choices:  shuffle([...item.incorrect_answers, item.correct_answer]),
           };
         }))
       );
   
     }
+    shuffle
     }
 
   console.log("current question", currentQuestions);

@@ -21,7 +21,7 @@ function Question(props) {
       answer
   ));
 
-  const shuffleChoices = shuffle(choices)
+  const shuffleChoices = choices
   const choicesfinale = shuffleChoices.map((answer) => (
    
     <p onClick={() =>props.handleClick(answer)} className={ `answer ${answer ===  correctanswer ? "correct-answer" : "" }`}>{answer}</p> 
