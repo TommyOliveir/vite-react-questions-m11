@@ -9,14 +9,35 @@ function Question(props) {
         ? "yellow"
         : "white",
   };
+  
+  const correctanswer = props.correct_answer;
 
   const incorrectanswers = props.incorrect_answers.map((answer) => (
     <p className="answer">{answer}</p>
   ));
+
   const choices = props.choices.map((answer) => (
-    <p className="answer">{answer}</p>
+   
+    <p className={ `answer ${answer ===  correctanswer ? "correct-answer" : "" }`}>{answer}</p> 
   ));
-  const correctanswer = props.correct_answer;
+
+  const shuffleChoices = shuffle(choices)
+
+  function shuffle(array) {
+    // const array = ["a", "b" , "c"]
+    let i = array.length, j, temp;
+    while(--i > 0) {
+      j = Math.floor(Math.random() * (i+1));
+      temp = array[j]
+      array[j] = array[i]
+      array[i] = temp
+      console.log("shuffle",array)
+    }
+    return array
+  
+  }
+
+
 
   return (
     <div>
@@ -30,8 +51,8 @@ function Question(props) {
         </div>
       ) : (
         <div className="multiple choice">
-          Multiple choice
-          <p className="correct-answer">{correctanswer}</p> {choices}{" "}
+      
+          <p> {shuffleChoices}</p>
         </div>
       )}
     </div>

@@ -56,9 +56,12 @@ function App() {
           };
         }))
     );
+  
   }
   console.log("current question", currentQuestions);
   console.log("multi", currentQuestions[0].multiple_choices);
+
+
 
   ///map original question from api
   // const questionElements = questions.map((item, index) => {
