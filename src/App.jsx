@@ -61,7 +61,9 @@ function App() {
   console.log("current question", currentQuestions);
   console.log("multi", currentQuestions[0].multiple_choices);
 
-
+function getValue(user_answered) {
+  console.log("get value answer", user_answered)
+}
 
   ///map original question from api
   // const questionElements = questions.map((item, index) => {
@@ -79,6 +81,7 @@ function App() {
         correct_answer={item.correct_answer}
         incorrect_answers={item.incorrect_answers}
         choices={item.multiple_choices}
+        handleClick={getValue}
       />
     );
   });

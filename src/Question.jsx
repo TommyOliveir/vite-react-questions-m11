@@ -1,4 +1,5 @@
 import React from "react";
+import shuffle from "./utils";
 
 function Question(props) {
   const styles = {
@@ -18,25 +19,10 @@ function Question(props) {
 
   const choices = props.choices.map((answer) => (
    
-    <p className={ `answer ${answer ===  correctanswer ? "correct-answer" : "" }`}>{answer}</p> 
+    <p onClick={() =>props.handleClick(answer)} className={ `answer ${answer ===  correctanswer ? "correct-answer" : "" }`}>{answer}</p> 
   ));
 
   const shuffleChoices = shuffle(choices)
-
-  function shuffle(array) {
-    // const array = ["a", "b" , "c"]
-    let i = array.length, j, temp;
-    while(--i > 0) {
-      j = Math.floor(Math.random() * (i+1));
-      temp = array[j]
-      array[j] = array[i]
-      array[i] = temp
-      console.log("shuffle",array)
-    }
-    return array
-  
-  }
-
 
 
   return (
@@ -52,7 +38,7 @@ function Question(props) {
       ) : (
         <div className="multiple choice">
       
-          <p> {shuffleChoices}</p>
+           {shuffleChoices}
         </div>
       )}
     </div>
