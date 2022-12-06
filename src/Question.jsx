@@ -18,11 +18,14 @@ function Question(props) {
   ));
 
   const choices = props.choices.map((answer) => (
-   
-    <p onClick={() =>props.handleClick(answer)} className={ `answer ${answer ===  correctanswer ? "correct-answer" : "" }`}>{answer}</p> 
+      answer
   ));
 
   const shuffleChoices = shuffle(choices)
+  const choicesfinale = shuffleChoices.map((answer) => (
+   
+    <p onClick={() =>props.handleClick(answer)} className={ `answer ${answer ===  correctanswer ? "correct-answer" : "" }`}>{answer}</p> 
+  ));
 
 
   return (
@@ -38,7 +41,7 @@ function Question(props) {
       ) : (
         <div className="multiple choice">
       
-           {shuffleChoices}
+           {choicesfinale}
         </div>
       )}
     </div>

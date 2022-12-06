@@ -5,6 +5,7 @@ import { nanoid } from "nanoid";
 
 function App() {
   const [questions, setQuestions] = useState([]);
+  const [score, setScore] = useState(0);
   const [showQuiz, setShowQuiz] = useState(false);
   const [currentQuestions, setCurrentQuestions] = useState([
     {
@@ -19,6 +20,12 @@ function App() {
     },
   ]);
 
+  useEffect(() => {
+    fetch("https://opentdb.com/api.php?amount=5")
+      .then((response) => response.json())
+      .then((data) => setQuestions(data.results));
+  }, []);
+  
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5")
       .then((response) => response.json())
@@ -42,9 +49,10 @@ function App() {
   // }
 
   function showQuizBtn() {
-    setShowQuiz((prevShowQuiz) => (prevShowQuiz = true));
-    setCurrentQuestions(
-      (prevcurrentQuestions) =>
+    if(!showQuiz) {
+      setShowQuiz((prevShowQuiz) => (prevShowQuiz = true));
+      setCurrentQuestions(
+        (prevcurrentQuestions) =>
         (prevcurrentQuestions = questions.map((item) => {
           console.log("quesion map", item);
           return {
@@ -55,16 +63,25 @@ function App() {
             multiple_choices: [...item.incorrect_answers, item.correct_answer],
           };
         }))
-    );
+      );
   
-  }
+    }
+    }
+
   console.log("current question", currentQuestions);
   console.log("multi", currentQuestions[0].multiple_choices);
+ 
+  function getValue(user_answered) {
+    // console.log(user_answered)
+    // console.log("correct answer",currentQuestions.map(prev => prev.correct_answer))
+    const correctAnswerArray = currentQuestions.map(prev => prev.correct_answer)
 
-function getValue(user_answered) {
-  console.log("get value answer", user_answered)
-}
-
+    if (correctAnswerArray.includes(user_answered)) {
+      setScore(prevScore  => prevScore + 1)
+    }
+    console.log("score", score)
+  }
+  console.log("get value answer", currentQuestions)
   ///map original question from api
   // const questionElements = questions.map((item, index) => {
   //    return <Question  question={item.question} number={index + 1} type={item.type} incorrect_answers={item.incorrect_answers }
@@ -95,6 +112,7 @@ function getValue(user_answered) {
 
         <button onClick={showQuizBtn}>Start Quiz</button>
         {currentQuestions.question}
+        <p>Score is: {score}</p>
       </main>
     </div>
   );
