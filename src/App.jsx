@@ -6,9 +6,6 @@ import { shuffle, noduplicates } from "./utils.js";
 
 function App() {
   const [questions, setQuestions] = useState([]);
-  const [score, setScore] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState([]);
-  const [scorecounts, setScorecounts] = useState();
   const [showQuiz, setShowQuiz] = useState(false);
   const [currentQuestions, setCurrentQuestions] = useState([
     {
@@ -71,38 +68,27 @@ function App() {
   console.log("multi", currentQuestions[0].multiple_choices);
 
   function getValue(user_answered) {
-    // console.log("correct answer",currentQuestions.map(prev => prev.correct_answer))
-    const correctAnswersArray = currentQuestions.map(prev => prev.correct_answer)
+    // const correctAnswersArray = currentQuestions.map(prev => prev.correct_answer)
     const selectedAnswersArray = selectedAnswers
-
     const scorecounts = []
-
     setScorecounts(scorecounts)
-
     setSelectedAnswers(prev => noduplicates([...prev, user_answered]))
-
-    console.log("score", score)
-    console.log("countscores ", scorecounts)
-    console.log("correct answers", correctAnswersArray)
-    console.log("selected Answer", selectedAnswers)
-  
 
   }
 
   function handleChange(event) {
-    // console.log("changing", event.target.value)
-
-    selectedAnswers(prev => prev.map(item => [item, event.target.value] ) )
-  
- 
+    const correctAnswersArray = currentQuestions.map(prev => prev.correct_answer)
+    console.log("changing", event.target.value)
+  let answer = event.target.value
+  if(correctAnswersArray.includes(answer)) {
+    setScore(prev => prev + 1)
   }
 
 
-  function checkscore() {
-    console.log("check score")
 
-    setScore(scorecounts.length)
   }
+
+
 
 
   console.log("get value answer", currentQuestions)
@@ -133,13 +119,17 @@ function App() {
   return (
     <div className="App">
       <main>
+      
         {!showQuiz && <h1>Quiz bee</h1>}
         {!showQuiz && <p>Enjoy your quiz</p>}
-        {showQuiz && questionElements}
-
         <button onClick={showQuizBtn}>Start Quiz</button>
-        <button onClick={checkscore}>score</button>
+
+        <form action="">
+        {showQuiz && questionElements}
+    
+        <button type="submit" >submit</button>
         {currentQuestions.question}
+        </form>
         {showQuiz && <p>Score is: {score}</p>}
         {<p>selected{selectedAnswers.join(",")} </p>}
         {scorecounts}

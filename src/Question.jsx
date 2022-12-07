@@ -28,7 +28,7 @@ function Question(props) {
           <input type="radio"
             value={answer}
 
-            name={props.question} onClick={() => props.handleClick(answer)}
+            name={props.question} 
             onChange={props.handleChange} />
 
           {answer}
@@ -54,8 +54,11 @@ function Question(props) {
         </div>
       ) : (
         <div className="multiple choice">
+  
 
           {choicesfinale}
+     
+ 
         </div>
       )}
     </div>
