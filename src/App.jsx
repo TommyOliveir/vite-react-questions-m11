@@ -7,6 +7,7 @@ import shuffle from "./utils";
 function App() {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
+  const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [showQuiz, setShowQuiz] = useState(false);
   const [currentQuestions, setCurrentQuestions] = useState([
     {
@@ -74,16 +75,23 @@ function App() {
   console.log("multi", currentQuestions[0].multiple_choices);
  
   function getValue(user_answered) {
-    // console.log(user_answered)
     // console.log("correct answer",currentQuestions.map(prev => prev.correct_answer))
     const correctAnswerArray = currentQuestions.map(prev => prev.correct_answer)
+  
 
-    if (correctAnswerArray.includes(user_answered)) {
-      setScore(prevScore  => prevScore + 1)
-    }
+    setSelectedAnswers([user_answered])
+    // if (correctAnswerArray.includes(user_answered)) {
+    //   setScore(prevScore  => prevScore + 1)
+    // }
     console.log("score", score)
+    console.log("selected Answer", selectedAnswer)
   }
+
+
+
   console.log("get value answer", currentQuestions)
+
+
   ///map original question from api
   // const questionElements = questions.map((item, index) => {
   //    return <Question  question={item.question} number={index + 1} type={item.type} incorrect_answers={item.incorrect_answers }
@@ -114,7 +122,8 @@ function App() {
 
         <button onClick={showQuizBtn}>Start Quiz</button>
         {currentQuestions.question}
-        <p>Score is: {score}</p>
+        {showQuiz && <p>Score is: {score}</p>}
+        {selectedAnswers}
       </main>
     </div>
   );

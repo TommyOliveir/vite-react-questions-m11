@@ -35,8 +35,8 @@ function Question(props) {
       </p>
       {props.type === "boolean" ? (
         <div>
-          <p>{incorrectanswers}</p>
-          <p className="correct-answer">{correctanswer}</p>
+          <p  onClick={() =>props.handleClick(incorrectanswers)}>{incorrectanswers}</p>
+          <p  onClick={() =>props.handleClick(correctanswer)}className="correct-answer">{correctanswer}</p>
         </div>
       ) : (
         <div className="multiple choice">
