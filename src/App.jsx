@@ -64,7 +64,7 @@ function App() {
       );
 
     }
-    shuffle
+
   }
 
   console.log("current question", currentQuestions);
@@ -73,22 +73,36 @@ function App() {
   function getValue(user_answered) {
     // console.log("correct answer",currentQuestions.map(prev => prev.correct_answer))
     const correctAnswersArray = currentQuestions.map(prev => prev.correct_answer)
-
     const selectedAnswersArray = selectedAnswers
+
     const scorecounts = []
-    selectedAnswersArray.forEach(val => correctAnswersArray.includes(val) && scorecounts.push(val))
+
     setScorecounts(scorecounts)
 
     setSelectedAnswers(prev => noduplicates([...prev, user_answered]))
-  
-
 
     console.log("score", score)
     console.log("countscores ", scorecounts)
     console.log("correct answers", correctAnswersArray)
     console.log("selected Answer", selectedAnswers)
+  
+
   }
 
+  function handleChange(event) {
+    // console.log("changing", event.target.value)
+
+    selectedAnswers(prev => prev.map(item => [item, event.target.value] ) )
+  
+ 
+  }
+
+
+  function checkscore() {
+    console.log("check score")
+
+    setScore(scorecounts.length)
+  }
 
 
   console.log("get value answer", currentQuestions)
@@ -111,6 +125,7 @@ function App() {
         incorrect_answers={item.incorrect_answers}
         choices={item.multiple_choices}
         handleClick={getValue}
+        handleChange={handleChange}
       />
     );
   });
@@ -123,10 +138,11 @@ function App() {
         {showQuiz && questionElements}
 
         <button onClick={showQuizBtn}>Start Quiz</button>
+        <button onClick={checkscore}>score</button>
         {currentQuestions.question}
         {showQuiz && <p>Score is: {score}</p>}
-      { <p>selected{selectedAnswers.join(",")} </p>}
-      {scorecounts}
+        {<p>selected{selectedAnswers.join(",")} </p>}
+        {scorecounts}
       </main>
     </div>
   );

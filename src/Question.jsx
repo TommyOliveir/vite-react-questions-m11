@@ -7,24 +7,37 @@ function Question(props) {
       props.type === "multiple"
         ? "#59E391"
         : props.type === "boolean"
-        ? "yellow"
-        : "white",
+          ? "yellow"
+          : "white",
   };
-  
+
   const correctanswer = props.correct_answer;
 
-  const incorrectanswers = props.incorrect_answers.map((answer) => (
-    <p className="answer">{answer}</p>
-  ));
+  const incorrectanswers = props.incorrect_answers.map((answer) => answer
+  );
 
   const choices = props.choices.map((answer) => (
-      answer
+    answer
   ));
 
   const shuffleChoices = choices
   const choicesfinale = shuffleChoices.map((answer) => (
-   
-    <p onClick={() =>props.handleClick(answer)} className={ `answer ${answer ===  correctanswer ? "correct-answer" : "" }`}>{answer}</p> 
+    <>
+      <div className="radio">
+        <label className={`answer ${answer === correctanswer ? "correct-answer" : ""}`}>
+          <input type="radio"
+            value={answer}
+
+            name={props.question} onClick={() => props.handleClick(answer)}
+            onChange={props.handleChange} />
+
+          {answer}
+        </label>
+      </div>
+      {/* <p type="radio" onClick={() =>props.handleClick(answer)} className={ `answer ${answer ===  correctanswer ? "correct-answer" : "" }`}>{answer} </p> */}
+    </>
+
+
   ));
 
 
@@ -34,14 +47,15 @@ function Question(props) {
         {props.number}. {props.question}
       </p>
       {props.type === "boolean" ? (
-        <div>
-          <p  onClick={() =>props.handleClick(incorrectanswers)}>{incorrectanswers}</p>
-          <p  onClick={() =>props.handleClick(correctanswer)}className="correct-answer">{correctanswer}</p>
+        <div >
+
+         true or false
+         
         </div>
       ) : (
         <div className="multiple choice">
-      
-           {choicesfinale}
+
+          {choicesfinale}
         </div>
       )}
     </div>

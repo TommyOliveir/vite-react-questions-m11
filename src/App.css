@@ -22,3 +22,10 @@ background: red;
     background: greenyellow;
    
 }
+
+.flex {
+
+display: flex;
+gap: .3em;
+}
+
