@@ -1,5 +1,5 @@
 import React from "react";
-import shuffle from "./utils";
+// import { shuffle, noduplicates } from "./utils.js";
 
 function Question(props) {
   const styles = {
