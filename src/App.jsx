@@ -19,6 +19,7 @@ function App() {
       // user_scored: "",
     },
   ]);
+  const [currentAswers, setCurrentAswers] = useState();
   console.log("tom", questions);
   console.log("hey", questions[1]);
 
@@ -49,8 +50,9 @@ function App() {
       );
     }
   }
-  function handleChange(event) {
-    console.log(event.target.value);
+  function handleClick(event) {
+    console.log(event.target.name);
+    setCurrentAswers((prev) => [...prev, event.target.value]);
   }
 
   //
@@ -75,7 +77,7 @@ function App() {
         correct_answer={item.correct_answer}
         incorrect_answers={item.incorrect_answers}
         choices={item.multiple_choices}
-        handleChange={handleChange}
+        handleClick={handleClick}
       />
     );
   });
@@ -89,7 +91,7 @@ function App() {
 
         <form>
           {showQuiz && questionElements}
-
+          {currentAswers}
           <button type="submit">submit</button>
         </form>
       </main>
