@@ -35,7 +35,7 @@ function App() {
       setCurrentQuestions(
         (prevcurrentQuestions) =>
         (prevcurrentQuestions = questions.map((item) => {
-          console.log("quesion map", item);
+          console.log("question map", item);
           return {
             question: item.question,
             type: item.type,
@@ -52,13 +52,6 @@ function App() {
 
   console.log("current question", currentQuestions);
   console.log("multi", currentQuestions[0].multiple_choices);
-
- 
-
-
-
-
-
   console.log("get value answer", currentQuestions)
 
 
@@ -95,7 +88,7 @@ function App() {
         {showQuiz && questionElements}
     
         <button type="submit" >submit</button>
-        {currentQuestions.question}
+      
         </form>
   
 
