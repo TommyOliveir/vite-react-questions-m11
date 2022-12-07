@@ -27,6 +27,7 @@ function Question(props) {
           }`}
         >
           <input
+            id={answer}
             type="radio"
             value={answer}
             name={props.question}

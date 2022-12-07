@@ -6,6 +6,7 @@ import { shuffle, noduplicates } from "./utils.js";
 
 function App() {
   const [questions, setQuestions] = useState([]);
+  const [score, setScore] = useState(0);
   const [showQuiz, setShowQuiz] = useState(false);
   const [currentQuestions, setCurrentQuestions] = useState([
     {
@@ -50,13 +51,22 @@ function App() {
       );
     }
   }
+
   function handleClick(event) {
     console.log(event.target.name);
     setCurrentAswers((prev) => [...prev, event.target.value]);
+    const correctAnswersArray = currentQuestions.map(
+      (prev) => prev.correct_answer
+    );
+    if (correctAnswersArray.includes(event.target.value)) {
+      setScore((prev) => prev + 1);
+    }
+
+    console.log("correctanswers", correctAnswersArray);
+    console.log("score", score);
   }
-  function handleSubmit() {
-    console.log("submit");
-    setCurrentAswers(noduplicates(currentAswers));
+  function handleSubmit(event) {
+    console.log("submiy");
   }
 
   console.log("current question", currentQuestions);
@@ -99,6 +109,7 @@ function App() {
             submit
           </button>
         </form>
+        {score}
       </main>
     </div>
   );
