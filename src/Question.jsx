@@ -47,7 +47,28 @@ function Question(props) {
         {props.number}. {props.question}
       </p>
       {props.type === "boolean" ? (
-        <div>true or false</div>
+        <div>
+          <label className="correct-answer">
+            <input
+              type="radio"
+              value={correctanswer}
+              name={props.question}
+              onClick={props.handleClick}
+            />
+
+            {correctanswer}
+          </label>
+          <label>
+            <input
+              type="radio"
+              value={incorrectanswers}
+              name={props.question}
+              onClick={props.handleClick}
+            />
+
+            {incorrectanswers}
+          </label>
+        </div>
       ) : (
         <div className="multiple choice">{choicesfinale}</div>
       )}
