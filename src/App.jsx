@@ -29,20 +29,6 @@ function App() {
   }, []);
 
 
-
-  //working
-  // function showQuizBtn() {
-  //   setShowQuiz(prevShowQuiz => prevShowQuiz = true)
-  //   setCurrentQuestions(questions.map(question => {
-  //     return {
-  //       question: question.question,
-  //       type: question.type,
-  //       correct_answer: question.correct_answer,
-  //       incorrect_answers: question.incorrect_answers
-  //     }
-  //   }))
-  // }
-
   function showQuizBtn() {
     if (!showQuiz) {
       setShowQuiz((prevShowQuiz) => (prevShowQuiz = true));
@@ -67,26 +53,8 @@ function App() {
   console.log("current question", currentQuestions);
   console.log("multi", currentQuestions[0].multiple_choices);
 
-  function getValue(user_answered) {
-    // const correctAnswersArray = currentQuestions.map(prev => prev.correct_answer)
-    const selectedAnswersArray = selectedAnswers
-    const scorecounts = []
-    setScorecounts(scorecounts)
-    setSelectedAnswers(prev => noduplicates([...prev, user_answered]))
+ 
 
-  }
-
-  function handleChange(event) {
-    const correctAnswersArray = currentQuestions.map(prev => prev.correct_answer)
-    console.log("changing", event.target.value)
-  let answer = event.target.value
-  if(correctAnswersArray.includes(answer)) {
-    setScore(prev => prev + 1)
-  }
-
-
-
-  }
 
 
 
@@ -110,8 +78,7 @@ function App() {
         correct_answer={item.correct_answer}
         incorrect_answers={item.incorrect_answers}
         choices={item.multiple_choices}
-        handleClick={getValue}
-        handleChange={handleChange}
+      
       />
     );
   });
@@ -130,9 +97,9 @@ function App() {
         <button type="submit" >submit</button>
         {currentQuestions.question}
         </form>
-        {showQuiz && <p>Score is: {score}</p>}
-        {<p>selected{selectedAnswers.join(",")} </p>}
-        {scorecounts}
+  
+
+
       </main>
     </div>
   );
