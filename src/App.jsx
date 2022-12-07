@@ -58,7 +58,10 @@ function App() {
     const correctAnswersArray = currentQuestions.map(
       (prev) => prev.correct_answer
     );
-    if (correctAnswersArray.includes(event.target.value)) {
+    if (
+      correctAnswersArray.includes(event.target.value) ||
+      !setCurrentAswers.includes(event.target.value)
+    ) {
       setScore((prev) => prev + 1);
     }
 
