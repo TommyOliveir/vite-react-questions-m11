@@ -58,18 +58,12 @@ function App() {
     const correctAnswersArray = currentQuestions.map(
       (prev) => prev.correct_answer
     );
-    if (
-      correctAnswersArray.includes(event.target.value) ||
-      !setCurrentAswers.includes(event.target.value)
-    ) {
-      setScore((prev) => prev + 1);
-    }
 
     console.log("correctanswers", correctAnswersArray);
-    console.log("score", score);
   }
+
   function handleSubmit(event) {
-    console.log("submiy");
+    event.preventDefault();
   }
 
   console.log("current question", currentQuestions);
