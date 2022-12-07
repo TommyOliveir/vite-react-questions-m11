@@ -28,32 +28,36 @@ function App() {
       .then((data) => setQuestions(data.results));
   }, []);
 
-
   function showQuizBtn() {
     if (!showQuiz) {
       setShowQuiz((prevShowQuiz) => (prevShowQuiz = true));
       setCurrentQuestions(
         (prevcurrentQuestions) =>
-        (prevcurrentQuestions = questions.map((item) => {
-          console.log("question map", item);
-          return {
-            question: item.question,
-            type: item.type,
-            correct_answer: item.correct_answer,
-            incorrect_answers: item.incorrect_answers,
-            multiple_choices: shuffle([...item.incorrect_answers, item.correct_answer]),
-          };
-        }))
+          (prevcurrentQuestions = questions.map((item) => {
+            console.log("question map", item);
+            return {
+              question: item.question,
+              type: item.type,
+              correct_answer: item.correct_answer,
+              incorrect_answers: item.incorrect_answers,
+              multiple_choices: shuffle([
+                ...item.incorrect_answers,
+                item.correct_answer,
+              ]),
+            };
+          }))
       );
-
     }
-
   }
+  function handleChange(event) {
+    console.log(event.target.value);
+  }
+
+  //
 
   console.log("current question", currentQuestions);
   console.log("multi", currentQuestions[0].multiple_choices);
-  console.log("get value answer", currentQuestions)
-
+  console.log("get value answer", currentQuestions);
 
   ///map original question from api
   // const questionElements = questions.map((item, index) => {
@@ -71,7 +75,7 @@ function App() {
         correct_answer={item.correct_answer}
         incorrect_answers={item.incorrect_answers}
         choices={item.multiple_choices}
-      
+        handleChange={handleChange}
       />
     );
   });
@@ -79,20 +83,15 @@ function App() {
   return (
     <div className="App">
       <main>
-      
         {!showQuiz && <h1>Quiz bee</h1>}
         {!showQuiz && <p>Enjoy your quiz</p>}
         <button onClick={showQuizBtn}>Start Quiz</button>
 
-        <form action="">
-        {showQuiz && questionElements}
-    
-        <button type="submit" >submit</button>
-      
+        <form>
+          {showQuiz && questionElements}
+
+          <button type="submit">submit</button>
         </form>
-  
-
-
       </main>
     </div>
   );
