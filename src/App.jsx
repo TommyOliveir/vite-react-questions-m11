@@ -19,7 +19,7 @@ function App() {
       // user_scored: "",
     },
   ]);
-  const [currentAswers, setCurrentAswers] = useState();
+  const [currentAswers, setCurrentAswers] = useState([]);
   console.log("tom", questions);
   console.log("hey", questions[1]);
 
@@ -54,8 +54,10 @@ function App() {
     console.log(event.target.name);
     setCurrentAswers((prev) => [...prev, event.target.value]);
   }
-
-  //
+  function handleSubmit() {
+    console.log("submit");
+    setCurrentAswers(noduplicates(currentAswers));
+  }
 
   console.log("current question", currentQuestions);
   console.log("multi", currentQuestions[0].multiple_choices);
@@ -92,7 +94,10 @@ function App() {
         <form>
           {showQuiz && questionElements}
           {currentAswers}
-          <button type="submit">submit</button>
+          <button type="button" onClick={handleSubmit}>
+            {" "}
+            submit
+          </button>
         </form>
       </main>
     </div>
