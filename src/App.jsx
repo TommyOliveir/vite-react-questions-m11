@@ -125,7 +125,7 @@ function handleShowAswers() {
         incorrect_answers={item.incorrect_answers}
         choices={item.multiple_choices}
         handleClick={handleClick}
-
+        showAswers={showAswers}
 
       />
     );
@@ -134,19 +134,20 @@ function handleShowAswers() {
   return (
     <div className="App">
       <main>
+  
         {!showQuiz && <h1>Quiz bee</h1>}
         {!showQuiz && <p>Enjoy your quiz</p>}
         <button onClick={showQuizBtn}>Start Quiz</button>
-
-        <form>
-          {showQuiz && questionElements}
-          {currentAswers} 
-         {showQuiz && <button type="button" onClick={handleShowAswers} >
+       {showAswers && <h2>Your is Score - {score}</h2> }   {showQuiz && <button type="button" onClick={handleShowAswers} >
             {" "}
             Check Answers and Scores
           </button>}
+        <form>
+          {showQuiz && questionElements}
+          {currentAswers} 
+       
         </form>
-        {score}
+     
         {finalAswers}
       </main>
     </div>
