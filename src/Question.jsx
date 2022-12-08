@@ -12,7 +12,6 @@ function Question(props) {
   };
 
   const correctanswer = props.correct_answer;
-
   const incorrectanswers = props.incorrect_answers.map((answer) => answer);
 
   const choices = props.choices.map((answer) => answer);
@@ -42,7 +41,7 @@ function Question(props) {
         <div>
          
 
-          <button type="button" id={correctanswer} onClick={ () => props.handleClick(correctanswer) }
+          {/* <button type="button" id={correctanswer} onClick={ () => props.handleClick(correctanswer) }
           className={`answer options ${correctanswer === correctanswer ? "correct-answer" : ""
             }`}
         >
@@ -54,8 +53,8 @@ function Question(props) {
             }`}
         >
             {incorrectanswers}
-        </button>
-
+        </button> */}
+        {choicesfinale}
 
         </div>
       ) : (
