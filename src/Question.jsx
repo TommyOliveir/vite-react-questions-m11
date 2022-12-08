@@ -22,7 +22,7 @@ function Question(props) {
     <>
       <div >
         <button type="button" id={answer} onClick={ (event) => props.handleClick(answer, choices, event) }
-          className={`answer options {${answer === correctanswer ? "correct-answer" : ""
+          className={`answer options ${answer === correctanswer ? "correct-answer" : ""
             }`}
         >
           {answer}
