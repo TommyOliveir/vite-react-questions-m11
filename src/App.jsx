@@ -70,16 +70,30 @@ function App() {
     }
     )
 
-   
-
-    //btn disable
+   //btn disable
     const element = document.getElementById(answer);
     element.setAttribute('disabled', '');
 
-   
- 
-  }
+  
+   }
 
+  function handleClickBoolean(answer) {
+    currentQuestions.map(item => {
+      if (answer == item.correct_answer) {
+        setScore(prev => prev + 1)
+      }
+    
+     
+    }
+    )
+
+   //btn disable
+    const element = document.getElementById(answer);
+    element.setAttribute('disabled', '');
+
+  
+   }
+//end
 
 
 
