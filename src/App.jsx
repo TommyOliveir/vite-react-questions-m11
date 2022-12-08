@@ -8,6 +8,7 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
   const [showQuiz, setShowQuiz] = useState(false);
+  const [showAswers, setShowAswers] = useState(false);
   const [currentQuestions, setCurrentQuestions] = useState([
     {
       id: nanoid(),
@@ -95,6 +96,11 @@ function App() {
    }
 //end
 
+function handleShowAswers() {
+  console.log("show answer")
+  setShowAswers(true)
+  console.log(showAswers)
+}
 
 
 
@@ -134,11 +140,11 @@ function App() {
 
         <form>
           {showQuiz && questionElements}
-          {currentAswers}
-          <button type="button" >
+          {currentAswers} 
+         {showQuiz && <button type="button" onClick={handleShowAswers} >
             {" "}
-            submit
-          </button>
+            Check Answers and Scores
+          </button>}
         </form>
         {score}
         {finalAswers}
