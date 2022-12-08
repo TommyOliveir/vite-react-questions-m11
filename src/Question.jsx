@@ -18,10 +18,11 @@ function Question(props) {
   const choices = props.choices.map((answer) => answer);
 
   const shuffleChoices = choices;
+  //
   const choicesfinale = shuffleChoices.map((answer) => (
     <>
-      <div>
-        <button type="button" id={answer} onClick={ () => props.handleClick(answer) }
+      <div >
+        <button type="button" id={answer} onClick={ (event) => props.handleClick(answer, choices, event) }
           className={`answer options ${answer === correctanswer ? "correct-answer" : ""
             }`}
         >
@@ -39,29 +40,26 @@ function Question(props) {
       </p>
       {props.type === "boolean" ? (
         <div>
-          <label className="correct-answer">
-            <input
-              type="radio"
-              value={correctanswer}
-              name={props.question}
-              onClick={props.handleClick}
-            />
+         
 
+          <button type="button" id={correctanswer} onClick={ () => props.handleClick(correctanswer) }
+          className={`answer options ${correctanswer === correctanswer ? "correct-answer" : ""
+            }`}
+        >
             {correctanswer}
-          </label>
-          <label>
-            <input
-              type="radio"
-              value={incorrectanswers}
-              name={props.question}
-              onClick={props.handleClick}
-            />
+        </button>
 
+          <button type="button" id={incorrectanswers} onClick={ () => props.handleClick(incorrectanswers) }
+          className={`answer options ${incorrectanswers === correctanswer ? "correct-answer" : ""
+            }`}
+        >
             {incorrectanswers}
-          </label>
+        </button>
+
+
         </div>
       ) : (
-        <div className="multiple choice">{choicesfinale}</div>
+        <div className="multiple_choice">{choicesfinale}</div>
       )}
     </div>
   );

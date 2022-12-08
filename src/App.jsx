@@ -40,7 +40,7 @@ function App() {
         (prevcurrentQuestions) =>
         (prevcurrentQuestions = questions.map((item) => {
           console.log("question map", item);
-          return {
+          return  {
             question: item.question,
             type: item.type,
             correct_answer: item.correct_answer,
@@ -60,11 +60,24 @@ function App() {
       if (answer == item.correct_answer) {
         setScore(prev => prev + 1)
       }
+      if( item.multiple_choices.includes(answer)) {
+        console.log("dectedted", item.multiple_choices)
+        item.multiple_choices.map(item => {
+          return document.getElementById(item).setAttribute('disabled', '')
+        })
+      }
+     
     }
     )
-console.log(answer)
-const element = document.getElementById(answer);
-element.setAttribute('disabled', '');
+
+   
+
+    //btn disable
+    const element = document.getElementById(answer);
+    element.setAttribute('disabled', '');
+
+   
+ 
   }
 
 
