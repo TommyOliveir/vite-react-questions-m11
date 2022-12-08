@@ -41,7 +41,7 @@ function App() {
         (prevcurrentQuestions) =>
         (prevcurrentQuestions = questions.map((item) => {
           console.log("question map", item);
-          return  {
+          return {
             question: item.question,
             type: item.type,
             correct_answer: item.correct_answer,
@@ -61,46 +61,46 @@ function App() {
       if (answer == item.correct_answer) {
         setScore(prev => prev + 1)
       }
-      if( item.multiple_choices.includes(answer)) {
+      if (item.multiple_choices.includes(answer)) {
         console.log("dectedted", item.multiple_choices)
         item.multiple_choices.map(item => {
           return document.getElementById(item).setAttribute('disabled', '')
         })
       }
-     
+
     }
     )
 
-   //btn disable
+    //btn disable
     const element = document.getElementById(answer);
     element.setAttribute('disabled', '');
 
-  
-   }
+
+  }
 
   function handleClickBoolean(answer) {
     currentQuestions.map(item => {
       if (answer == item.correct_answer) {
         setScore(prev => prev + 1)
       }
-    
-     
+
+
     }
     )
 
-   //btn disable
+    //btn disable
     const element = document.getElementById(answer);
     element.setAttribute('disabled', '');
 
-  
-   }
-//end
 
-function handleShowAswers() {
-  console.log("show answer")
-  setShowAswers(true)
-  console.log(showAswers)
-}
+  }
+  //end
+
+  function handleShowAswers() {
+    console.log("show answer")
+    setShowAswers(true)
+    console.log(showAswers)
+  }
 
 
 
@@ -134,20 +134,22 @@ function handleShowAswers() {
   return (
     <div className="App">
       <main>
-  
-        {!showQuiz && <h1>Quiz bee</h1>}
-        {!showQuiz && <p>Enjoy your quiz</p>}
-        <button onClick={showQuizBtn}>Start Quiz</button>
-       {showAswers && <h2>Your is Score - {score}</h2> }   {showQuiz && <button type="button" onClick={handleShowAswers} >
+        <div className="header">
+          {!showQuiz && <h1>Quiz bee</h1>}
+          {!showQuiz && <p>Enjoy your quiz</p>}
+          <button onClick={showQuizBtn}>Start Quiz</button>
+          {showAswers && <h2>Your is Score - {score}</h2>}   {showQuiz && <button type="button" onClick={handleShowAswers} >
             {" "}
             Check Answers and Scores
           </button>}
-        <form>
-          {showQuiz && questionElements}
-          {currentAswers} 
+        </div>
+
        
-        </form>
-     
+          {showQuiz && questionElements}
+          {currentAswers}
+
+       
+
         {finalAswers}
       </main>
     </div>
