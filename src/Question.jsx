@@ -7,8 +7,8 @@ function Question(props) {
       props.type === "multiple"
         ? "#59E391"
         : props.type === "boolean"
-        ? "yellow"
-        : "white",
+          ? "yellow"
+          : "white",
   };
 
   const correctanswer = props.correct_answer;
@@ -20,24 +20,15 @@ function Question(props) {
   const shuffleChoices = choices;
   const choicesfinale = shuffleChoices.map((answer) => (
     <>
-      <div className="radio">
-        <label
-          className={`answer ${
-            answer === correctanswer ? "correct-answer" : ""
-          }`}
+      <div>
+        <button type="button" id={answer} onClick={ () => props.handleClick(answer) }
+          className={`answer options ${answer === correctanswer ? "correct-answer" : ""
+            }`}
         >
-          <input
-            id={answer}
-            type="radio"
-            value={answer}
-            name={props.question}
-            onClick={props.handleClick}
-          />
-
           {answer}
-        </label>
+        </button>
       </div>
-      {/* <p type="radio" onClick={() =>props.handleClick(answer)} className={ `answer ${answer ===  correctanswer ? "correct-answer" : "" }`}>{answer} </p> */}
+
     </>
   ));
 

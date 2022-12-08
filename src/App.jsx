@@ -21,6 +21,9 @@ function App() {
     },
   ]);
   const [currentAswers, setCurrentAswers] = useState([]);
+  const [finalAswers, setFinalAswers] = useState()
+
+
   console.log("tom", questions);
   console.log("hey", questions[1]);
 
@@ -35,36 +38,38 @@ function App() {
       setShowQuiz((prevShowQuiz) => (prevShowQuiz = true));
       setCurrentQuestions(
         (prevcurrentQuestions) =>
-          (prevcurrentQuestions = questions.map((item) => {
-            console.log("question map", item);
-            return {
-              question: item.question,
-              type: item.type,
-              correct_answer: item.correct_answer,
-              incorrect_answers: item.incorrect_answers,
-              multiple_choices: shuffle([
-                ...item.incorrect_answers,
-                item.correct_answer,
-              ]),
-            };
-          }))
+        (prevcurrentQuestions = questions.map((item) => {
+          console.log("question map", item);
+          return {
+            question: item.question,
+            type: item.type,
+            correct_answer: item.correct_answer,
+            incorrect_answers: item.incorrect_answers,
+            multiple_choices: shuffle([
+              ...item.incorrect_answers,
+              item.correct_answer,
+            ]),
+          };
+        }))
       );
     }
   }
 
-  function handleClick(event) {
-    console.log(event.target.name);
-    setCurrentAswers((prev) => [...prev, event.target.value]);
-    const correctAnswersArray = currentQuestions.map(
-      (prev) => prev.correct_answer
-    );
-
-    console.log("correctanswers", correctAnswersArray);
+  function handleClick(answer) {
+    currentQuestions.map(item => {
+      if (answer == item.correct_answer) {
+        setScore(prev => prev + 1)
+      }
+    }
+    )
+console.log(answer)
+const element = document.getElementById(answer);
+element.setAttribute('disabled', '');
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+
+
+
 
   console.log("current question", currentQuestions);
   console.log("multi", currentQuestions[0].multiple_choices);
@@ -87,6 +92,8 @@ function App() {
         incorrect_answers={item.incorrect_answers}
         choices={item.multiple_choices}
         handleClick={handleClick}
+
+
       />
     );
   });
@@ -101,12 +108,13 @@ function App() {
         <form>
           {showQuiz && questionElements}
           {currentAswers}
-          <button type="button" onClick={handleSubmit}>
+          <button type="button" >
             {" "}
             submit
           </button>
         </form>
         {score}
+        {finalAswers}
       </main>
     </div>
   );

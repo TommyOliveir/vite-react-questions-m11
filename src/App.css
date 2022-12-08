@@ -29,3 +29,9 @@ display: flex;
 gap: .3em;
 }
 
+.options {
+    width: 100%;
+    text-align: left;
+    margin-top: 1em;
+    padding: .5em;
+}
