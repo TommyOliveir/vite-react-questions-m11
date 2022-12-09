@@ -4,6 +4,7 @@ import Question from "./Question";
 import { nanoid } from "nanoid";
 import { shuffle, noduplicates } from "./utils.js";
 
+
 function App() {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
@@ -35,26 +36,30 @@ function App() {
   }, []);
 
   function showQuizBtn() {
-    if (!showQuiz) {
-      setShowQuiz((prevShowQuiz) => (prevShowQuiz = true));
-      setCurrentQuestions(
-        (prevcurrentQuestions) =>
-        (prevcurrentQuestions = questions.map((item) => {
-          console.log("question map", item);
-          return {
-            question: item.question,
-            type: item.type,
-            correct_answer: item.correct_answer,
-            incorrect_answers: item.incorrect_answers,
-            multiple_choices: shuffle([
-              ...item.incorrect_answers,
-              item.correct_answer,
-            ]),
-          };
-        }))
+ if(!showQuiz){
+   setShowQuiz((prevShowQuiz) => (prevShowQuiz = true));
+   setCurrentQuestions(
+     (prevcurrentQuestions) =>
+     (prevcurrentQuestions = questions.map((item) => {
+       console.log("question map", item);
+       return {
+         question: item.question,
+         type: item.type,
+         correct_answer: item.correct_answer,
+         incorrect_answers: item.incorrect_answers,
+         multiple_choices: shuffle([
+           ...item.incorrect_answers,
+           item.correct_answer,
+          ]),
+        };
+      }))
       );
+    } else {
+      window.location.reload()
+      
     }
   }
+  
 
   function handleClick(answer) {
     currentQuestions.map(item => {
@@ -137,7 +142,7 @@ function App() {
         <div className="header">
           {!showQuiz && <h1>Quiz bee</h1>}
           {!showQuiz && <p>Enjoy your quiz</p>}
-          <button onClick={showQuizBtn}>Start Quiz</button>
+          <button onClick={showQuizBtn}>{showQuiz ? "another Quiz": "Start Quiz"}</button>
           {showAswers && <h2>Your is Score - {score}</h2>}   {showQuiz && <button type="button" onClick={handleShowAswers} >
             {" "}
             Check Answers and Scores
