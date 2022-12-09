@@ -20,8 +20,8 @@ function Question(props) {
   //
   const choicesfinale = shuffleChoices.map((answer) => (
     <>
-      <div >
-        <button type="button" id={answer} onClick={ (event) => props.handleClick(answer, choices, event) }
+      <div  >
+        <button class="options-btn" type="button" id={answer} onClick={ (event) => props.handleClick(answer, choices, event) }
           className={`answer options  ${props.showAswers && answer === correctanswer ? "correct-answer" : ""
             }`}
         >
@@ -34,7 +34,7 @@ function Question(props) {
 
   return (
     <div>
-      <p style={styles}>
+      <p >
         {props.number}. {props.question}
       </p>
       {props.type === "boolean" ? (

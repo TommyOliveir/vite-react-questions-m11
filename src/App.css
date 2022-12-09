@@ -4,6 +4,8 @@ font-family: 'Inter', sans-serif;
 font-family: 'Nunito', sans-serif;
 font-family: 'Poppins', sans-serif;
 font-family: 'Roboto', sans-serif;
+box-sizing: border-box;
+color: #293264;
 }
 
 main{
@@ -14,12 +16,50 @@ main{
     padding: 1em 2em;
 }
 
+.header {
+    background: white;
+    position: fixed;
+    width: 100%;
+    height: 190px;
+    top: 0;
+    left: 0;
+    text-align: center;
+    padding: 1em;
+}
+
+main {
+margin-top: 180px;
+}
+
+.menu {
+    background: white;
+    /* border: 1px solid black; */
+    width: 20%;
+    margin: auto;
+    height: 100%;
+    color: #293264;
+    padding: 1em;
+    border-radius: 10px;
+ 
+}
+
+.menu h1 {
+    margin: 0;
+}
+.menu h2 {
+   color: #293264;
+}
+/* //// */
 .answer:hover {
-background: red;
+background: #D6DBF5;
+}
+.answer:focus{
+    background-color: #ffdb3a;;
+  
 }
 
 .correct-answer {
-    background: greenyellow;
+    background:#94D7A2;
    
 }
 
@@ -34,22 +74,29 @@ gap: .3em;
     text-align: left;
     margin-top: 1em;
     padding: .5em;
+
+    border: #293264 1px solid;
 }
 
-.container_ans {
-background: red;
+
+
+button {
+    /* background: white;
+    color: #293264 ; */
+    padding: .4em .9em ;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 1em;
 }
 
-.header {
-    background: red;
-    position: fixed;
-    width: 100%;
-    height: 150px;
-    top: 0;
-    left: 0;
+button:focus {
+    background-color:yellow;    
 }
 
-main {
-margin-top: 150px;
+.menu button {
+background: #293264;
+color: white;
 }
 

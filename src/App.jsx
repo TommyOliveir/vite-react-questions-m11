@@ -56,7 +56,7 @@ function App() {
       );
     } else {
       window.location.reload()
-      
+     
     }
   }
   
@@ -79,6 +79,8 @@ function App() {
     //btn disable
     const element = document.getElementById(answer);
     element.setAttribute('disabled', '');
+
+  
 
 
   }
@@ -140,13 +142,17 @@ function App() {
     <div className="App">
       <main>
         <div className="header">
+          <div className="menu">
+
+       
           {!showQuiz && <h1>Quiz bee</h1>}
           {!showQuiz && <p>Enjoy your quiz</p>}
-          <button onClick={showQuizBtn}>{showQuiz ? "another Quiz": "Start Quiz"}</button>
+          <button id="btn-start-quiz" onClick={showQuizBtn}>{showQuiz ? "another Quiz": "Start Quiz"}</button>
           {showAswers && <h2>Your is Score - {score}</h2>}   {showQuiz && <button type="button" onClick={handleShowAswers} >
             {" "}
             Check Answers and Scores
           </button>}
+          </div>
         </div>
 
        
